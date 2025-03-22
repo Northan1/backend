@@ -28,30 +28,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config(
-    "DJANGO_SECRET_KEY",
-    cast=str,
-    default="l#c66qv(=&0kttw+zi%kf2xv&&x%&8da&j^m7#-kq+cw5a**"
-)
+SECRET_KEY = 'gatesapi0001@fjg4573%#(vf4362536vcvfh!65bvnfjklz&vb453'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DJANGO_DEBUG', cast=bool, default=False)
+DEBUG = True
 
-ALLOWED_HOSTS = []
-ALLOWED_HOSTS.extend(
-    filter(
-        None,
-        os.environ.get('ALLOWED_HOSTS', '').split(','),
-    )
-)
-
-CSRF_TRUSTED_ORIGINS = []
-CSRF_TRUSTED_ORIGINS.extend(
-    filter(
-        None,
-        os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(','),
-    )
-)
+ALLOWED_HOSTS = ["website-domain.com", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ['https://website-domain.com', 'https://127.0.0.1']
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 
 
@@ -125,31 +108,31 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
-
-
-#db_from_env = dj_database_url.config(conn_max_age=600)
-#DATABASES['default'].update(db_from_env)
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        "NAME": os.environ.get("POSTGRES_NAME"),
-        "USER": os.environ.get("POSTGRES_USER"),
-        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
-        "HOST": os.environ.get("POSTGRES_HOST"),
-        "PORT": os.environ.get("POSTGRES_PORT"),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
 
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        "NAME": os.environ.get("POSTGRES_NAME"),
+#        "USER": os.environ.get("POSTGRES_USER"),
+#        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
+#        "HOST": os.environ.get("POSTGRES_HOST"),
+#        "PORT": os.environ.get("POSTGRES_PORT"),
+#    }
+#}
+
+
+#db_from_env = dj_database_url.config(conn_max_age=600)
+#DATABASES['default'].update(db_from_env)
 
 
 # Password validation
